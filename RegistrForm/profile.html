@@ -11,18 +11,19 @@
         <h1>Профиль пользователя</h1>
         <p><strong>Электронная почта:</strong> <span id="user-email"></span></p>
         <p><strong>Дата регистрации:</strong> <span id="registration-date"></span></p>
+        <p><strong>Логин:</strong> <span id="user-username"></span></p>
         <form id="update-form">
             <label for="new-username">Новый логин</label>
-            <input type="text" id="new-username" name="new-username" placeholder="Введите новый логин">
+            <input type="text" id="new-username" name="newUsername" placeholder="Введите новый логин">
             <label for="new-password">Новый пароль</label>
-            <input type="password" id="new-password" name="new-password" placeholder="Введите новый пароль">
+            <input type="password" id="new-password" name="newPassword" placeholder="Введите новый пароль">
             <button type="submit">Сохранить изменения</button>
         </form>
         <button onclick="logout()">Выйти</button>
     </div>
     <script>
 async function fetchUserProfile() {
-    const email = localStorage.getItem('userEmail'); // Получаем email из localStorage
+    const email = localStorage.getItem('userEmail');
 
     if (!email) {
         alert('Вы не авторизованы');
@@ -36,14 +37,13 @@ async function fetchUserProfile() {
             credentials: 'include',
         });
 
-        if (!response.ok) {
-            throw new Error('Ошибка сети или сервера');
-        }
+        if (!response.ok) throw new Error('Ошибка сети');
 
         const result = await response.json();
 
         if (result.status === 'success') {
             document.getElementById('user-email').textContent = result.email;
+            document.getElementById('user-username').textContent = result.username;
             document.getElementById('registration-date').textContent = new Date(result.registration_date).toLocaleDateString();
         } else {
             alert(result.message);
@@ -51,11 +51,39 @@ async function fetchUserProfile() {
         }
     } catch (error) {
         console.error('Ошибка загрузки профиля:', error);
-        alert('Произошла ошибка при загрузке профиля. Пожалуйста, попробуйте позже.');
+        alert('Произошла ошибка.');
         window.location.href = './login.html';
     }
 }
 
+async function updateProfile(event) {
+    event.preventDefault();
+
+    const email = localStorage.getItem('userEmail');
+    const newUsername = document.getElementById('new-username').value.trim();
+    const newPassword = document.getElementById('new-password').value.trim();
+
+    const formData = new FormData();
+    formData.append('email', email);
+    if (newUsername) formData.append('newUsername', newUsername);
+    if (newPassword) formData.append('newPassword', newPassword);
+
+    try {
+        const response = await fetch('http://localhost:3000/update-profile', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        if (result.status === 'success') fetchUserProfile();
+    } catch (error) {
+        console.error('Ошибка обновления профиля:', error);
+        alert('Ошибка обновления данных.');
+    }
+}
+
+document.getElementById('update-form').addEventListener('submit', updateProfile);
 window.onload = fetchUserProfile;
 
         function logout() {
