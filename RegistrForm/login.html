@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <span class="close" onclick="window.location.href='index.html'">&times;</span>
+        <form id="login-form" class="form-content">
+            <h1>Вход</h1>
+            <p>Пожалуйста, заполните форму для входа</p>
+            <hr>
+            <label for="login-email">Электронная почта</label>
+            <input type="email" id="login-email" name="email" placeholder="Введите email" required autocomplete="off">
+
+            <label for="login-pass">Пароль</label>
+            <input type="password" id="login-pass" name="pass" placeholder="Введите пароль" required>
+
+            <div class="buttons">
+                <button type="button" class="CancelBtn" onclick="window.location.href='index.html'">Отмена</button>
+                <button type="submit" class="LoginBtn">Войти</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function (e) {
+            e.preventDefault(); 
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-pass').value;
+
+         
+            if (!email.trim() || !password.trim()) {
+                alert("Пожалуйста, заполните все поля.");
+                return;
+            }
+
+         
+            if (/\s/.test(email) || /\s/.test(password)) {
+                alert("Поле не может содержать пробелы.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('pass', password);
+
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json();
+                alert(result.message);
+
+                if (result.status === 'success') {
+    localStorage.setItem('userEmail', email); // Сохраняем email
+    window.location.href = './profile.html';
+}
+            } catch (error) {
+                console.error('Ошибка при отправке формы:', error);
+            }
+        });
+    </script>
+</body>
+</html>

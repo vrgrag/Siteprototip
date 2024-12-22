@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница пользователя</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="user-profile">
+        <h2>Добро пожаловать, <span id="username-display">[Имя пользователя]</span></h2>
+        <p>Email: <span id="email-display">[Email]</span></p>
+        <p>Дата регистрации: <span id="registration-date">[Дата регистрации]</span></p>
+
+        <button id="logout-button">Выйти</button>
+
+        <h3>Опциональные данные</h3>
+        <form id="update-form" onsubmit="return updateProfile();">
+            <label for="new-username">Новый логин:</label>
+            <input type="text" id="new-username" placeholder="Введите новый логин">
+
+            <label for="new-email">Новый Email:</label>
+            <input type="email" id="new-email" placeholder="Введите новый Email">
+
+            <label for="new-password">Новый пароль:</label>
+            <input type="password" id="new-password" placeholder="Введите новый пароль">
+
+            <button type="submit">Обновить данные</button>
+        </form>
+    </div>
+
+    <script src="./profile.js"></script>
+</body>
+</html>

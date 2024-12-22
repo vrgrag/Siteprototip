@@ -1,0 +1,317 @@
+/* Общие стили для страницы */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+/* Основной контейнер для формы */
+.form-container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    position: relative;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Закрытие формы */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Контент внутри формы */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Заголовок формы */
+.form-content h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #4CAF50;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* Теги для полей ввода */
+.form-content label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Поля ввода */
+.form-content input[type="email"],
+.form-content input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s;
+}
+
+.form-content input[type="email"]:focus,
+.form-content input[type="password"]:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+/* Кнопки внизу формы */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Кнопки действия */
+.buttons button {
+    width: 48%;
+    padding: 14px 0;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Кнопка отмены */
+.buttons .CancelBtn {
+    background-color: #f44336;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.buttons .CancelBtn:hover {
+    background-color: #e53935;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Кнопка регистрации */
+.buttons .SignUpBtn {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.buttons .SignUpBtn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Анимация для появления формы */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Стиль для текста с ссылкой */
+p {
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+}
+
+p a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+
+/* Контейнер для профиля */
+.profile-container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    position: relative;
+    animation: slideIn 0.5s ease-out;
+}
+
+.profile-container h1 {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Стиль для текста данных профиля */
+.profile-container p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.profile-container strong {
+    font-weight: bold;
+}
+
+/* Стиль для формы изменения данных */
+#update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#update-form label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+}
+
+#update-form input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+#update-form input:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+#update-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+#update-form button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Кнопка выхода */
+.profile-container button {
+    background-color: #f44336;
+    color: white;
+    padding: 12px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.profile-container button:hover {
+    background-color: #e53935;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Анимация для появления формы */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Дополнительные стили для мобильных устройств */
+@media (max-width: 600px) {
+    .profile-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .profile-container h1 {
+        font-size: 22px;
+    }
+
+    .profile-container p {
+        font-size: 14px;
+    }
+
+    #update-form input {
+        font-size: 14px;
+    }
+
+    #update-form button {
+        font-size: 14px;
+    }
+}
+/* Кнопка входа */
+.buttons .LoginBtn {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.buttons .LoginBtn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+/* Дополнительные стили для мобильных устройств */
+@media (max-width: 600px) {
+    .form-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-content input[type="email"],
+    .form-content input[type="password"] {
+        font-size: 14px;
+    }
+
+    .buttons button {
+        width: 48%;
+    }
+
+    .form-content h1 {
+        font-size: 22px;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Профиль пользователя</h1>
+        <p><strong>Электронная почта:</strong> <span id="user-email"></span></p>
+        <p><strong>Дата регистрации:</strong> <span id="registration-date"></span></p>
+        <form id="update-form">
+            <label for="new-username">Новый логин</label>
+            <input type="text" id="new-username" name="new-username" placeholder="Введите новый логин">
+            <label for="new-password">Новый пароль</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Введите новый пароль">
+            <button type="submit">Сохранить изменения</button>
+        </form>
+        <button onclick="logout()">Выйти</button>
+    </div>
+    <script>
+async function fetchUserProfile() {
+    const email = localStorage.getItem('userEmail'); // Получаем email из localStorage
+
+    if (!email) {
+        alert('Вы не авторизованы');
+        window.location.href = './login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/get-profile?email=${encodeURIComponent(email)}`, {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            throw new Error('Ошибка сети или сервера');
+        }
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            document.getElementById('user-email').textContent = result.email;
+            document.getElementById('registration-date').textContent = new Date(result.registration_date).toLocaleDateString();
+        } else {
+            alert(result.message);
+            window.location.href = './login.html';
+        }
+    } catch (error) {
+        console.error('Ошибка загрузки профиля:', error);
+        alert('Произошла ошибка при загрузке профиля. Пожалуйста, попробуйте позже.');
+        window.location.href = './login.html';
+    }
+}
+
+window.onload = fetchUserProfile;
+
+        function logout() {
+    localStorage.removeItem('userEmail'); // Удаляем email
+    window.location.href = './login.html';
+}
+    </script>
+</body>
+</html>
