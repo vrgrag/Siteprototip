@@ -1,129 +1,38 @@
-/* Общие стили для страницы */
+/* Основной стиль для страницы */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e9ecef;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     color: #333;
+    animation: fadeIn 1s ease-out;
 }
 
-/* Основной контейнер для формы */
-.form-container {
-    background-color: white;
+/* Анимация для плавного появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Основной контейнер формы */
+.form-container, .profile-container {
+    background: white;
     padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 400px;
     position: relative;
     animation: slideIn 0.5s ease-out;
 }
 
-/* Закрытие формы */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 22px;
-    color: #aaa;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.close:hover {
-    color: #333;
-}
-
-/* Контент внутри формы */
-.form-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Заголовок формы */
-.form-content h1 {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #4CAF50;
-    font-size: 26px;
-    font-weight: 700;
-}
-
-/* Теги для полей ввода */
-.form-content label {
-    font-weight: bold;
-    font-size: 14px;
-    color: #555;
-}
-
-/* Поля ввода */
-.form-content input[type="email"],
-.form-content input[type="password"] {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: all 0.3s;
-}
-
-.form-content input[type="email"]:focus,
-.form-content input[type="password"]:focus {
-    border-color: #4CAF50;
-    background-color: #fff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
-}
-
-/* Кнопки внизу формы */
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-/* Кнопки действия */
-.buttons button {
-    width: 48%;
-    padding: 14px 0;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Кнопка отмены */
-.buttons .CancelBtn {
-    background-color: #f44336;
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.buttons .CancelBtn:hover {
-    background-color: #e53935;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Кнопка регистрации */
-.buttons .SignUpBtn {
-    background-color: #4CAF50;
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.buttons .SignUpBtn:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Анимация для появления формы */
+/* Анимация для появления контейнера */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -135,15 +44,166 @@ body {
     }
 }
 
-/* Стиль для текста с ссылкой */
+/* Закрытие формы */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Заголовок формы */
+.form-content h1, .profile-container h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #5c67a3;
+    margin-bottom: 20px;
+}
+
+.form-content input[type="password"],
+#update-form input {
+    margin-bottom: 20px;
+}
+
+
+/* Контейнер для кнопок */
+#auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px; /* Расстояние между кнопками */
+
+    margin: 0;
+}
+
+/* Общий стиль кнопок */
+.button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Стиль кнопки Login */
+.button:first-child {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Фиолетово-синий градиент */
+    color: white;
+}
+
+.button:first-child:hover {
+    background: linear-gradient(135deg, #5a0eb8, #1f64d8);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(32, 58, 232, 0.2);
+}
+
+/* Стиль кнопки Sign Up */
+.button:last-child {
+    background: linear-gradient(135deg, #009c37, #06d010); /* Оранжево-желтый градиент */
+    color: white;
+}
+
+.button:last-child:hover {
+    background: linear-gradient(135deg, #009c37, #06d010);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(255, 165, 0, 0.2);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 600px) {
+    #auth-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
+
+/* Поля ввода */
+.form-content input[type="email"],
+.form-content input[type="password"],
+.form-content input[type="text"],
+#update-form input {
+    margin: 10px auto;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background: #f7f7f7;
+    transition: all 0.3s ease;
+}
+
+.form-content input[type="email"]:focus,
+.form-content input[type="password"]:focus,
+.form-content input[type="text"]:focus,
+#update-form input:focus {
+    border-color: #5c67a3;
+    background: white;
+    outline: none;
+    box-shadow: 0 0 8px rgba(92, 103, 163, 0.5);
+}
+
+
+
+/* Кнопки */
+.buttons button, #update-form button, .profile-container button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Стиль кнопок */
+.buttons .CancelBtn, .profile-container button {
+    background: linear-gradient(135deg, #f85032, #e73827);
+    color: white;
+    box-shadow: 0 6px 10px rgba(255, 77, 77, 0.3);
+}
+
+.buttons .SignUpBtn, .buttons .LoginBtn, #update-form button {
+    background: linear-gradient(135deg, #009c37, #06d010);
+    color: white;
+    box-shadow: 0 6px 10px rgba(92, 103, 163, 0.3);
+    margin: 20px auto ;
+}
+
+/* Ховер эффект для кнопок */
+.buttons button:hover, #update-form button:hover, .profile-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Текст ссылок */
 p {
-    font-size: 14px;
     text-align: center;
     color: #555;
 }
 
 p a {
-    color: #4CAF50;
+    color: #5c67a3;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -151,167 +211,35 @@ p a:hover {
     text-decoration: underline;
 }
 
-
-/* Контейнер для профиля */
-.profile-container {
-    background-color: white;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    position: relative;
-    animation: slideIn 0.5s ease-out;
-}
-
-.profile-container h1 {
-    text-align: center;
-    color: #4CAF50;
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-/* Стиль для текста данных профиля */
+/* Данные профиля */
 .profile-container p {
     font-size: 16px;
-    color: #555;
+    color: #333;
     margin: 10px 0;
 }
 
 .profile-container strong {
     font-weight: bold;
+    color: #5c67a3;
 }
 
-/* Стиль для формы изменения данных */
-#update-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-#update-form label {
-    font-weight: bold;
-    font-size: 14px;
-    color: #555;
-}
-
-#update-form input {
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    background-color: #f9f9f9;
-}
-
-#update-form input:focus {
-    border-color: #4CAF50;
-    background-color: #fff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
-}
-
-#update-form button {
-    padding: 12px;
-    border: none;
-    border-radius: 30px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s;
-}
-
-#update-form button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Кнопка выхода */
-.profile-container button {
-    background-color: #f44336;
-    color: white;
-    padding: 12px;
-    border-radius: 30px;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.profile-container button:hover {
-    background-color: #e53935;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Анимация для появления формы */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Дополнительные стили для мобильных устройств */
+/* Мобильная адаптация */
 @media (max-width: 600px) {
-    .profile-container {
+    .form-container, .profile-container {
         width: 90%;
         padding: 20px;
     }
 
-    .profile-container h1 {
+    .form-content h1, .profile-container h1 {
         font-size: 22px;
     }
 
-    .profile-container p {
+    .form-content input, #update-form input {
         font-size: 14px;
     }
 
-    #update-form input {
+    .buttons button, #update-form button {
         font-size: 14px;
-    }
-
-    #update-form button {
-        font-size: 14px;
-    }
-}
-/* Кнопка входа */
-.buttons .LoginBtn {
-    background-color: #4CAF50;
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.buttons .LoginBtn:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-}
-/* Дополнительные стили для мобильных устройств */
-@media (max-width: 600px) {
-    .form-container {
-        width: 90%;
-        padding: 20px;
-    }
-
-    .form-content input[type="email"],
-    .form-content input[type="password"] {
-        font-size: 14px;
-    }
-
-    .buttons button {
-        width: 48%;
-    }
-
-    .form-content h1 {
-        font-size: 22px;
+        padding: 12px;
     }
 }
